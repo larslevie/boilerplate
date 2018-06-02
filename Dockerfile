@@ -2,7 +2,8 @@ FROM node:10.3.0-alpine
 LABEL Lars Levie <lars@levieindustries.com>
 
 RUN apk --update --no-cache add \
-  nginx
+  nginx \
+  curl
 
 RUN mkdir -p /run/nginx
 
@@ -12,8 +13,6 @@ ENV \
   CONTAINERPILOT_VERSION='3.8.0'
 
 RUN \
-  apk --no-cache add curl libc6-compat nginx && \
-  mkdir -p /run/nginx && \
   curl -fLsS https://releases.hashicorp.com/consul-template/$CONSUL_TEMPLATE_VERSION/consul-template_${CONSUL_TEMPLATE_VERSION}_linux_amd64.tgz | \
   tar xz -C /usr/local/bin && \
   curl -fLsS https://github.com/joyent/containerpilot/releases/download/$CONTAINERPILOT_VERSION/containerpilot-$CONTAINERPILOT_VERSION.tar.gz | \

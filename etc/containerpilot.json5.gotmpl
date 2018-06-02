@@ -12,7 +12,8 @@
       name: 'watch-build',
       exec: 'bin/watch-build.sh',
       when: {source: 'setup', once: 'exitSuccess'},
-      restarts: 'unlimited'
+      restarts: 'unlimited',
+      logging: {raw: true}
     },
 {{- end}}
     {

@@ -1,13 +1,14 @@
 module.exports = {
   env: {
-    browser: true,
+    browser: true
   },
-  extends: 'airbnb',
+  extends: "airbnb",
   rules: {
-    'max-len': ['error', { code: 80 }],
-    'import/no-extraneous-dependencies': [
-      'error',
-      { devDependencies: ['webpack.*.*js'] },
-    ],
-  },
+    "arrow-parens": [0],
+    "max-len": ["error", { code: 80 }],
+    "import/no-extraneous-dependencies": [
+      "error",
+      { devDependencies: ["webpack.*.*js"] }
+    ]
+  }
 };

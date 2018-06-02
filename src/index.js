@@ -1,11 +1,7 @@
-import _ from 'lodash';
+import './initializers/livereload';
 
-function component() {
-  const element = document.createElement('div');
+const container = window.document.createElement('div');
 
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+container.innerHTML = 'Hello world.';
 
-  return element;
-}
-
-document.body.appendChild(component());
+document.body.appendChild(container);

@@ -1,3 +1,3 @@
 #!/bin/sh -e
 
-npx webpack --config webpack.dev.js --watch
+npx webpack --config /code/webpack.dev.js --watch

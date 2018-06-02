@@ -14,18 +14,8 @@ http {
   }
 
   server {
-    return {{env "URL"}}$request_uri;
-  }
-
-  server {
     server_name {{index (env "URL" | split "://") 1}};
     root /code/dist;
-
-    {{- if env "WATCH"}}
-    location /livereload {
-      proxy_pass http://localhost:{{env "LIVERELOAD_PORT"}};
-    }
-    {{- end}}
 
     location / {
       add_header Cache-Control 'no-cache, public';
