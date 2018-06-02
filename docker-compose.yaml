@@ -1,0 +1,10 @@
+version: "3.6"
+
+services:
+  app:
+    build: .
+    environment:
+      WATCH: '1'
+      LIVERELOAD_PORT: 35729
+    ports:
+      - 80:80

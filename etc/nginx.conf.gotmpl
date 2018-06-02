@@ -1,0 +1,36 @@
+daemon off;
+
+events {}
+
+http {
+  gzip on;
+  gzip_types application/javascript application/json text/css;
+  include mime.types;
+  server_tokens off;
+
+  map $http_upgrade $connection_upgrade {
+    '' close;
+    default upgrade;
+  }
+
+  server {
+    return {{env "URL"}}$request_uri;
+  }
+
+  server {
+    server_name {{index (env "URL" | split "://") 1}};
+    root /code/dist;
+
+    {{- if env "WATCH"}}
+    location /livereload {
+      proxy_pass http://localhost:{{env "LIVERELOAD_PORT"}};
+    }
+    {{- end}}
+
+    location / {
+      add_header Cache-Control 'no-cache, public';
+      error_page 405 =200 $uri;
+      try_files $uri /public/index.html;
+    }
+  }
+}
