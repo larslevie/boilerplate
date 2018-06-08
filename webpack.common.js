@@ -1,10 +1,9 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const LiveReloadPlugin = require('webpack-livereload-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: { index: ['./src/index.js'] },
+  entry: './src/index.js',
   plugins: [
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
@@ -12,7 +11,6 @@ module.exports = {
       template: path.resolve(__dirname, 'src/public/index.html'),
       filename: 'public/index.html',
     }),
-    new LiveReloadPlugin({}),
   ],
   module: {
     rules: [
@@ -23,10 +21,20 @@ module.exports = {
         loader: 'eslint-loader',
         options: { failOnError: true },
       },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
     ],
   },
   output: {
-    filename: '[name].js',
+    filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
   },
