@@ -13,7 +13,7 @@ module.exports = merge(common, {
   plugins: [
     new LiveReloadPlugin(),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': 'production',
+      // 'process.env.NODE_ENV': 'production',
       'process.env.WATCH': WATCH,
       'process.env.LIVERELOAD_PORT': LIVERELOAD_PORT,
       'process.env.URL': URL,
