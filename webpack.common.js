@@ -1,5 +1,6 @@
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -11,6 +12,7 @@ module.exports = {
       template: path.resolve(__dirname, 'src/public/index.html'),
       filename: 'public/index.html',
     }),
+    new StyleLintPlugin(),
   ],
   module: {
     rules: [
@@ -20,6 +22,36 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'eslint-loader',
         options: { failOnError: true },
+      },
+      {
+        test: /\.scss$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'style-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+              sourceMap: true,
+              localIdentName: '[local]-[hash:base64:8]',
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            options: { sourceMap: true },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
       },
       {
         test: /\.js$/,

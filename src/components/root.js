@@ -7,6 +7,7 @@ import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ApolloProvider, Query } from 'react-apollo';
+import styles from './styles.scss';
 
 const onErrorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -53,7 +54,7 @@ const ExchangeRates = ({ srcCurrency }) => (
       if (error) return <p>Error :(</p>;
 
       return (
-        <div>
+        <div className={styles.root}>
           <button onClick={() => load()}>Fetch!</button>
           {data.rates.map(({ currency, rate }) => (
             <div key={currency}>

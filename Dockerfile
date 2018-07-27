@@ -23,7 +23,7 @@ WORKDIR /code
 COPY package.json ./
 RUN npm install --no-save
 
-COPY .eslintrc.js stylelint.config.js ./
+COPY .eslintrc.js stylelint.config.js postcss.config.js ./
 COPY webpack.common.js webpack.prod.js ./
 COPY bin/build.sh bin/
 COPY src src
