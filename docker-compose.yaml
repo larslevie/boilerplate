@@ -13,6 +13,7 @@ services:
     volumes:
       - ./.eslintrc.js:/code/.eslintrc.js
       - ./stylelint.config.js:/code/stylelint.config.js
+      - ./postcss.config.js:/code/postcss.config.js
       - ./package.json:/code/package.json
       - ./webpack.common.js:/code/webpack.common.js
       - ./webpack.prod.js:/code/webpack.prod.js
