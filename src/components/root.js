@@ -3,15 +3,10 @@ import { ApolloClient } from 'apollo-client';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { HttpLink } from 'apollo-link-http';
-import { withClientState } from 'apollo-link-state';
 import gql from 'graphql-tag';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { ApolloProvider, Query } from 'react-apollo';
-
-const cache = new InMemoryCache();
-
-const stateLink = withClientState({ cache, resolvers });
 
 const onErrorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
@@ -53,7 +48,6 @@ const ExchangeRates = ({ srcCurrency }) => (
     delay
   >
     {({ loading, error, data, networkStatus, load }) => {
-      console.log('load', load);
       if (networkStatus === 4) console.log('refetching');
       if (loading) return <p>Loading...</p>;
       if (error) return <p>Error :(</p>;
@@ -73,7 +67,6 @@ const ExchangeRates = ({ srcCurrency }) => (
 );
 
 ExchangeRates.propTypes = { srcCurrency: PropTypes.string };
-
 ExchangeRates.defaultProps = { srcCurrency: null };
 
 const render = () => (
